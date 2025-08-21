@@ -18,7 +18,7 @@ pipeline{
 			stage('BVT'){
 				agent { label 'node1' }
 				steps{
-					sh ' echo "BVT is being run '
+					sh ' echo "BVT is being run" '
 				}
 			}
 			stage('Test'){
