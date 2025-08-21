@@ -14,8 +14,8 @@ pipeline{
 			}
 		}
 		stage('both BVT and Test'){
-		agent { label 'node1' }
 		parallel{
+			agent { label 'node1' }
 			stage('BVT'){
 				steps{
 					sh ' echo "BVT is being run '
