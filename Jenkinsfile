@@ -1,34 +1,20 @@
 pipeline{
-	agent none
+	agent { label 'node1' }
 	stages{
 		stage('Build'){
-			agent { label 'master' }
 			steps{
-				sh '''
-					echo "This is build node"
-					echo "Testing the pipeline job"
-				'''
+				sh ' echo "This is the build stage" '
 			}
 		}
 		stage('Deploy'){
-			agent { label 'node1' }
 			steps{
-				sh '''
-					echo "This is deploy stage"
-					echo "We are delpoying builds into the server"
-				'''
+				sh ' echo "This is the deploy node completed" '
 			}
 		}
 		stage('Test'){
-			agent { label 'node2' }
 			steps{
-				sh '''
-					echo "This is the Test stage"
-					echo "Testing team has integrated test cases using selenium"
-				'''
+				sh ' echo "This is the test node completed" '
 			}
 		}
 	}
 }
-
-				
