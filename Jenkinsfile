@@ -22,7 +22,7 @@ pipeline{
 				}
 			}
 			stage('Test'){
-				agant { label 'node2' }
+				agent { label 'node2' }
 				steps{
 					sh  ' echo "This is the Test stage" '
 				}
