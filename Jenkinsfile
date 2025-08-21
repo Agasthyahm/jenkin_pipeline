@@ -1,20 +1,33 @@
 pipeline{
-	agent { label 'node1' }
+	agent none
 	stages{
-		stage('Build'){
+		stage('build'){
+			agent { label 'node1' }
 			steps{
 				sh ' echo "This is the build stage" '
 			}
 		}
 		stage('Deploy'){
+			agent { label 'node2' }
 			steps{
-				sh ' echo "This is the deploy node completed" '
+				sh ' echo "This is the deploy stage" '
 			}
 		}
-		stage('Test'){
-			steps{
-				sh ' echo "This is the test node completed" '
+		stage('both BVT and Test'){
+		agent { label 'node1' }
+		parallel{
+			stage('BVT'){
+				steps{
+					sh ' echo "BVT is being run '
+				}
+			}
+			stage('Test'){
+				steps{
+					sh  ' echo "This is the Test stage" '
+				}
 			}
 		}
 	}
 }
+}
+
