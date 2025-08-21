@@ -15,13 +15,14 @@ pipeline{
 		}
 		stage('both BVT and Test'){
 		parallel{
-			agent { label 'node1' }
 			stage('BVT'){
+				agent { label 'node1' }
 				steps{
 					sh ' echo "BVT is being run '
 				}
 			}
 			stage('Test'){
+				agant { label 'node2' }
 				steps{
 					sh  ' echo "This is the Test stage" '
 				}
