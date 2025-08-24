@@ -1,0 +1,15 @@
+pipeline{
+	agent { label 'node2' }
+	stages{
+		stage("Build"){
+			steps{
+				sh ''' echo "The source code is pulled and built" '''
+			}
+		}
+		stage ("deploy"){
+			steps{
+				sh ''' echo "This is where the build is getting tested" '''
+			}
+		}
+	}	
+}
