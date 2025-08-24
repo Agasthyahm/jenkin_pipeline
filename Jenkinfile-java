@@ -1,5 +1,8 @@
 pipeline{
 	agent { label 'node2' }
+	environment{
+			SONAR_TOKEN = credentials('sonar-token')
+}
 	stages{
 		stage("Source code"){
 			steps{
@@ -9,7 +12,7 @@ pipeline{
 
 		stage("Build with maven"){
 			steps{
-				sh ' mvn clean install sonar:sonar'
+				sh ' mvn clean install sonar:sonar -Dsonar.login=${SONAR_TOKEN}'
 			}
 		}
 	}
