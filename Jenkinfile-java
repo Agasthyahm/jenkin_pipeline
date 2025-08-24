@@ -1,15 +1,16 @@
 pipeline{
 	agent { label 'node2' }
 	stages{
-		stage("pull source code"){
+		stage("Source code"){
 			steps{
-					git branch: 'master', url: 'https://github.com/Agasthyahm/hello-world-war-java.git'
+				git branch : 'master', url : 'https://github.com/Agasthyahm/hello-world-war-java.git'
 			}
 		}
-		stage ("deploy"){
+
+		stage("Build with maven"){
 			steps{
-				sh ''' echo "This is where the build is getting tested" '''
+				sh ' mvn clean install '
 			}
 		}
-	}	
+	}
 }
