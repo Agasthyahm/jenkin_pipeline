@@ -3,7 +3,9 @@ pipeline{
 	stages{
 		stage("pull source code"){
 			steps{
+				dir('Hello-world-code'){
 				git branch: 'main', url: 'https://github.com/Agasthyahm/hello-world-war-java.git'
+				}
 			}
 		}
 		stage ("deploy"){
