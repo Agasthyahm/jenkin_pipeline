@@ -1,9 +1,9 @@
 pipeline{
 	agent { label 'node2' }
 	stages{
-		stage("Build"){
+		stage("pull source code"){
 			steps{
-				sh ''' echo "The source code is pulled and built" '''
+				git branch: 'main', url: 'https://github.com/Agasthyahm/hello-world-war-java.git'
 			}
 		}
 		stage ("deploy"){
