@@ -10,7 +10,11 @@ pipeline{
 			parallel{
 				stage('deploy to server1'){
 					steps{
-						sh ''' echo "yet to write" '''
+						sh ''' ssh ec2-user@172.31.41.188 
+							cd /opt/tomcat/webapps/
+							scp ec2-user@172.31.47.51:/home/ec2-user/jenkins/workspace/tomcat-deployment/Calendar.war .
+							sudo systemctl restart tomcat
+						'''
 					}
 				}
 				stage('deploy to server2'){
@@ -27,4 +31,4 @@ pipeline{
 		}
 	}
 }
-		
+											
