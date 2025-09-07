@@ -1,7 +1,8 @@
 pipeline{
-	agent { label 'node2'}
+	agent None
 	stages{
 		stage('Build'){
+		{ label 'node2' }
 			steps{
 				git branch : 'master', url : 'https://github.com/Agasthyahm/calendar.git'
 			}
@@ -9,32 +10,32 @@ pipeline{
 		stage('Deploy into both server'){
 			parallel{
 				stage('deploy to server1'){
+				{ label 'node2' }
 					steps{
 						sh ''' ssh ec2-user@172.31.41.188 "
 							scp ec2-user@172.31.47.51:/home/ec2-user/jenkins/workspace/tomcat-deployment/Calendar.war . 
 							sudo cp Calendar.war /opt/tomcat/webapps/
-							sudo systemctl restart tomcat
-							exit "
+							sudo systemctl restart tomcat "
 					'''
 						
 					}
 				}
 				stage('deploy to server2'){
+				{ label 'node2' }
 					steps{
 						sh ''' ssh ec2-user@172.31.36.199 "
 							scp ec2-user@172.31.47.51:/home/ec2-user/jenkins/workspace/tomcat-deployment/Calendar.war .
 							sudo cp  Calendar.war /opt/tomcat/webapps/
-							sudo systemctl restart tomcat 
-							exit "
+							sudo systemctl restart tomcat  "
 					'''
 					}
 				}
 			}
 		}
 		stage('Test'){
+		{ label 'node2' }
 			steps{
-				sh ''' hostname -I
-					curl -Is "http://51.20.4.202:8080/Calendar/Calendar.html"
+				sh ''' curl -Is http://51.20.4.202:8080/Calendar/Calendar.html
  '''
 			}
 		}
