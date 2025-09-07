@@ -1,0 +1,29 @@
+pipeline{
+	agent { label 'node2'}
+	stages{
+		stage('Build'){
+			steps{
+				git branch : 'master', url : 'https://github.com/Agasthyahm/calendar.git'
+			}
+		stage('Deploy into both server'){
+			parallel{
+				stage('deploy to server1'){
+					steps{
+						sh ''' echo "yet to write" '''
+					}
+				}
+				stage('deploy to server2'){
+					steps{
+						sh ''' echo "yet to write" '''
+					}
+				}
+			}
+		}
+		stage('Test'){
+			steps{
+				sh ''' echo "yet to test" '''
+			}
+		}
+	}
+}
+		
