@@ -35,7 +35,12 @@ pipeline{
 		stage('Test'){
 		agent { label 'node2' }
 			steps{
-				sh ''' curl -Is http://51.20.4.202:8080/Calendar/Calendar.html
+				sh ''' 
+						echo -e "Testing for server1 \n"
+						curl -Is http://51.20.4.202:8080/Calendar/Calendar.html
+
+						echo -e "\n Testing for server2"
+						curl -Is http://16.170.206.50:8080/Calendar/Calendar.html
  '''
 			}
 		}
