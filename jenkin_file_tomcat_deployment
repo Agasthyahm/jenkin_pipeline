@@ -10,9 +10,10 @@ pipeline{
 			parallel{
 				stage('deploy to server1'){
 					steps{
-						sh ' ssh ec2-user@172.31.41.188 '
-						sh 'scp ec2-user@172.31.47.51:/home/ec2-user/jenkins/workspace/tomcat-deployment/Calendar.war . '
-
+						sh ''' ssh ec2-user@172.31.41.188 
+								hostnamectl -I
+					'''
+						
 					}
 				}
 				stage('deploy to server2'){
