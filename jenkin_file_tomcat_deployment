@@ -11,7 +11,9 @@ pipeline{
 				stage('deploy to server1'){
 					steps{
 						sh ''' ssh ec2-user@172.31.41.188 "
-								scp ec2-user@172.31.47.51:/home/ec2-user/jenkins/workspace/tomcat-deployment/Calendar.war . "
+								scp ec2-user@172.31.47.51:/home/ec2-user/jenkins/workspace/tomcat-deployment/Calendar.war . 
+								sudo cp Calendar.war /opt/tomcat/webapps/
+"
 					'''
 						
 					}
