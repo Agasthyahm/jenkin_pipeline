@@ -11,17 +11,20 @@ pipeline{
 				stage('deploy to server1'){
 					steps{
 						sh ''' ssh ec2-user@172.31.41.188 "
-								scp ec2-user@172.31.47.51:/home/ec2-user/jenkins/workspace/tomcat-deployment/Calendar.war . 
-								sudo cp Calendar.war /opt/tomcat/webapps/
-								sudo systemctl restart tomcat
-"
+							scp ec2-user@172.31.47.51:/home/ec2-user/jenkins/workspace/tomcat-deployment/Calendar.war . 
+							sudo cp Calendar.war /opt/tomcat/webapps/
+							sudo systemctl restart tomcat"
 					'''
 						
 					}
 				}
 				stage('deploy to server2'){
 					steps{
-						sh ''' echo "yet to write" '''
+						sh ''' ssh ec2-user@172.31.36.199 "
+							scp ec2-user@172.31.47.51:/home/ec2-user/jenkins/workspace/tomcat-deployment/Calendar.war .
+							sudo cp  Calendar.war /opt/tomcat/webapps/
+							sudo systemctl restart tomcat "
+					'''
 					}
 				}
 			}
