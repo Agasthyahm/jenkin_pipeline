@@ -10,8 +10,7 @@ pipeline{
 			parallel{
 				stage('deploy to server1'){
 					steps{
-						sh ''' ssh ec2-user@172.31.41.188 
-								hostname -I
+						sh ''' ssh ec2-user@172.31.41.188 "hostname -I"
 					'''
 						
 					}
