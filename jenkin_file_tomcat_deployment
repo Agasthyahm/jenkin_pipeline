@@ -31,8 +31,8 @@ pipeline{
 		}
 		stage('Test'){
 			steps{
-				sh ''' curl -Is http://51.20.4.202:8080/Calendar
-					curl -Is http://16.170.206.50:8080/Calendar
+				sh ''' curl -Is http://51.20.4.202:8080/Calendar/Calendar.html
+					curl -Is http://16.170.206.50:8080/Calendar/Calendar.html
  '''
 			}
 		}
