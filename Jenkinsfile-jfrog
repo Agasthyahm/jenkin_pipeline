@@ -1,0 +1,8 @@
+pipeline{
+  agent { label 'node2'}
+  stages{
+    stage('SCM'){
+      steps{
+      git branch: 'main', url: 'https://github.com/Agasthyahm/java-arifact_proj.git'
+      }
+    }
